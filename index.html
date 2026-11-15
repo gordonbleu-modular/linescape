@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LINESCAPE — generative line art for pen plotters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><span class="logo">▚</span> LINESCAPE<span class="cursor">_</span><small>pen-plotter scene generator · a LandGraph remix</small></div>
+    <div class="sigbox"><span class="dim">SEED</span> <b id="sigSeed">—</b> <span class="dim">·</span> <span id="sigDesc" class="dim"></span></div>
+    <div class="actions">
+      <button id="btnRand" class="hot" title="New seed (R)">⟳ RANDOMIZE</button>
+      <button id="btnSurprise" title="Random scene, style, time and season (S)">✦ SURPRISE</button>
+      <button id="btnFills" title="Random fill pattern per area (F)">▧ RANDOMIZE FILLS</button>
+      <button id="btnVar" title="4 variations of the current recipe">▦ 4 VARIATIONS</button>
+    </div>
+  </header>
+  <aside class="panel" id="panel"></aside>
+  <main class="stage">
+    <div class="toolbar">
+      <div class="grp"><button id="zFit" class="on">FIT</button><input id="zoom" type="range" min="100" max="400" value="100"><span id="zVal" class="dim">100%</span></div>
+      <div class="grp"><label class="tog"><input type="checkbox" id="showTravel"> show pen-up travel</label></div>
+      <div class="sp"></div>
+      <div class="grp"><button id="btnSvg" class="hot">⬇ SVG (all pens, layered)</button><button id="btnCopy">⧉ COPY SVG</button></div>
+    </div>
+    <div class="mat" id="mat"><canvas id="cv"></canvas><div class="busy" id="busy">PLOTTING…</div></div>
+    <section class="strip">
+      <div class="striphead"><span>FILL PATTERNS — previewed on every area</span><span class="dim">click = set global fill · shift+click = apply to all areas · scroll →</span></div>
+      <div class="thumbs" id="styleStrip"></div>
+    </section>
+  </main>
+  <aside class="stats" id="stats">
+    <h3>// PLOT STATS</h3>
+    <div class="kpis" id="kpis"></div>
+    <h3>// PENS</h3>
+    <div id="penTable"></div>
+    <p class="note">Every path is a stroke (<code>fill="none"</code>), hidden lines are removed, touching segments are merged and the order is optimised to keep pen-up travel short. SVG uses real millimetres; each pen is an Inkscape layer.</p>
+  </aside>
+</div>
+<div class="modal" id="varModal"><div class="mbox"><div class="mhead"><h2>▦ VARIATIONS — pick one</h2><button id="varMore">MORE</button><button id="varClose">CLOSE ✕</button></div><div class="vgrid" id="vgrid"></div></div></div>
+<div class="toast" id="toast"></div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
