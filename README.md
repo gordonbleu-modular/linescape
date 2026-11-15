@@ -8,22 +8,6 @@ Generative, figurative line art for pen plotters. It produces strokes only, with
 3. Paths are converted to mm and simplified. Touching segments are merged, and the paths are ordered nearest-neighbour (reversing where that helps) to cut pen-up travel.
 4. `src/export.js` writes the SVG at real mm sizes. Each pen gets its own Inkscape layer, and you can also export one SVG per pen.
 
-## Run
-    npm install
-    npm run dev        # http://localhost:5173
-    npm run build      # static build in dist/
-    npm run preview    # serve dist/ on http://localhost:4173
-
-Netlify: build command `npm run build`, publish directory `dist` (already set in netlify.toml).
-Keys: R = new seed, S = surprise me, F = randomize fills.
-
-## Deploy to GitHub Pages
-
-1. Push this repo to GitHub (branch `main`).
-2. In the repo go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
-3. The workflow `.github/workflows/deploy.yml` builds the app and publishes `dist` on every push to `main`
-   (or run it manually from the Actions tab). The site will be at `https://<user>.github.io/<repo>/`.
-
 ## Fill patterns
 `src/fills.js` contains 19 stroke-only fill patterns: none, hatch, crosshatch, broken lines, wave, zigzag,
 ridge lines (Joy Division), concentric contours (distance field + marching squares), spiral, stipple dots,
